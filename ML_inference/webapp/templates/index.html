@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff; /* White background to match the logo */
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff; /* White background for the container */
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            text-align: left;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            width: 200px; /* Adjusted width to match your request */
+            height: auto;
+            margin-top: 15px;
+        }
+
+        h1 {
+            color: #d32f2f; /* Red color from the logo for headings */
+            margin-bottom: 1rem;
+        }
+
+        form {
+            text-align: left;
+        }
+
+        textarea {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #d32f2f; /* Red border color from the logo */
+            border-radius: 8px;
+            resize: vertical;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #d32f2f; /* Red background color from the logo */
+            color: #fff; /* White text for contrast */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #333; /* Dark grey for regular text for readability */
+        }
+        
+        img.logo {
+            width: 300px; /* Increased logo size */
+            height: auto;
+            margin-top: 10px;
+            margin-bottom: 20px; /* Added some space below the logo */
+        }
+
+        .sentiment-result {
+            font-size: 1.2em; /* Larger font size for results */
+            margin-top: 20px;
+        }
+
+        .sentiment-result span.emoji {
+            font-size: 2em; /* Larger emoji size */
+            margin-left: 10px;
+        }
+
+        /* Additional styles for enhancements */
+        .container {
+            /* ... existing styles ... */
+            position: relative; /* For positioning the emoji absolutely within the container */
+        }
+
+        .container::after {
+            content: attr(data-emoji); /* Use a data attribute to change the emoji */
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 3em; /* Large emoji size */
+        }
+    </style>
+</head>
+<body>
+    <img src="{{ url_for('static', filename='images/innomatics.png') }}" alt="Innomatics Research Labs Logo">
+
+    <div class="container">
+        <h1>Sentiment Analysis of Real-time Flipkart Product Reviews    </h1>
+        <form action="/predict" method="post">
+            <textarea name="text" rows="4" cols="50" placeholder="Enter text here..."></textarea><br>
+            <input type="submit" value="Predict">
+        </form>
+        <div class="sentiment-result">
+            The sentiment of the text "{{ text }}" is {{ prediction }}
+            <span class="emoji">{{ emoji }}</span>
+        </div>
+    </div>
+</body>
+</html>
